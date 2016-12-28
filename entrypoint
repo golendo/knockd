@@ -1,0 +1,16 @@
+#!/bin/sh
+
+echo '[options]
+        logfile = /var/log/knockd.log
+
+[opencloseSSH]
+        sequence      = '$1'
+        seq_timeout   = 15
+        tcpflags      = syn
+        start_command = /sbin/iptables -A INPUT -s %IP% -p tcp --dport '$2' -j ACCEPT
+        cmd_timeout   = 10
+        stop_command  = /sbin/iptables -D INPUT -s %IP% -p tcp --dport '$2' -j ACCEPT
+
+' > /etc/knockd.conf
+
+knockd -i $3
