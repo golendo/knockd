@@ -3,7 +3,7 @@
 echo '[options]
         logfile = /var/log/knockd.log
 
-[opencloseSSH]
+[openclosePort]
         sequence      = '$1'
         seq_timeout   = 15
         tcpflags      = syn
